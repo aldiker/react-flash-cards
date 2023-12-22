@@ -45,7 +45,11 @@ const questions = [
 ]
 
 function FlashCards() {
-    const [selectedId, setSelectedId] = useState(2002)
+    const [selectedId, setSelectedId] = useState(null)
+
+    function handleClick(newId) {
+        setSelectedId(newId !== selectedId ? newId : null)
+    }
 
     return (
         <div className="flashcards">
@@ -53,6 +57,7 @@ function FlashCards() {
                 <div
                     key={element.id}
                     className={element.id === selectedId ? 'selected' : ''}
+                    onClick={() => handleClick(element.id)}
                 >
                     <p>
                         {element.id === selectedId
